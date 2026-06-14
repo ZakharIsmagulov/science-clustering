@@ -154,9 +154,9 @@ def process(
             abstract_name = abstract_name,
             chunk_size=chunk_size,
             stop=stop)
-        embedder = E5LargeEmbedModel(batch_size=batch_size, model_path=EMBED_FOLDER, max_length=MAX_LEN, prefix=PREFIX)
+        embedder = E5LargeEmbedModel(batch_size=batch_size)
         batch_size = embedder.get_batch_size()
-        embs_buf = EmbeddingsBuffer(flush_fn=flush_fn(writer), limit_gb=1, cols=EMBEDDING_SIZE)
+        embs_buf = EmbeddingsBuffer(flush_fn=flush_fn(writer), limit_gb=1, cols=1024)
 
         for row_num, rows in enumerate(texts_gen):
             ids, texts = transform_rows(rows)
